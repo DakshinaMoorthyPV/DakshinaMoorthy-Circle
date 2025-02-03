@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 public class AmazonSearchResultsPage {
 	private WebDriver driver;
 
-	// ✅ Locators
 	private static final By PRODUCT_LIST_LOCATOR = By.cssSelector("[cel_widget_id*='SEARCH_RESULTS']");
 	private static final By PRODUCT_NAME_LOCATOR = By.cssSelector(" h2>span");
 	private static final By PRODUCT_PRICE_LOCATOR = By
@@ -21,13 +20,7 @@ public class AmazonSearchResultsPage {
 		this.driver = driver;
 	}
 
-	/**
-	 * ✅ Checks if the product list is displayed
-	 * 
-	 * @param product Name of the product to check
-	 * @return A StringBuffer containing the product rows that are unrelated to the
-	 *         specified product
-	 */
+
 	public StringBuffer isProductListDisplayed(String product) {
 		List<WebElement> productList = driver.findElements(PRODUCT_LIST_LOCATOR);
 		StringBuffer unrelatedProductRows = new StringBuffer();
@@ -47,11 +40,6 @@ public class AmazonSearchResultsPage {
 		return unrelatedProductRows.length() > 0 ? unrelatedProductRows : null;
 	}
 
-	/**
-	 * ✅ Checks if product names & prices are displayed for each product
-	 * 
-	 * @return A StringBuffer containing the product rows with missing details
-	 */
 	public StringBuffer areProductNamesAndPricesDisplayed() {
 		StringBuffer missingDetailsProductRows = new StringBuffer();
 		List<WebElement> productList = driver.findElements(PRODUCT_LIST_LOCATOR);
@@ -63,10 +51,8 @@ public class AmazonSearchResultsPage {
 
 		IntStream.range(0, productList.size()).mapToObj(index -> getProductInfo(productList.get(index), index))
 				.forEach(productInfo -> {
-					// Scroll to product first
 					scrollToProduct(productList.get(productInfo.index));
 
-					// Then validate if product name or price is missing
 					if (productInfo.productName.isEmpty() || productInfo.productPrice.isEmpty()) {
 						appendMissingDetails(missingDetailsProductRows, productInfo);
 					}
@@ -75,27 +61,19 @@ public class AmazonSearchResultsPage {
 		return missingDetailsProductRows.length() > 0 ? missingDetailsProductRows : null;
 	}
 
-	/**
-	 * Scrolls the page to the given product element
-	 * 
-	 * @param productElement The WebElement of the product to scroll to
-	 */
 	private void scrollToProduct(WebElement productElement) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		// Ensure the element is in the viewport and visible without being hidden
 		js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});",
 				productElement);
 	}
 
-	// Helper method to get product information (name, price) along with the index
 	private ProductInfo getProductInfo(WebElement productElement, int index) {
 		String productName = productElement.findElement(PRODUCT_NAME_LOCATOR).getText().trim();
 		String productPrice = productElement.findElement(PRODUCT_PRICE_LOCATOR).getText().trim();
 		return new ProductInfo(index, productName, productPrice);
 	}
 
-	// Helper method to append unrelated product to the result
 	private void appendUnrelatedProduct(StringBuffer result, ProductInfo productInfo, String product) {
 		result.append("Product row " + (productInfo.index + 1) + " not related to " + product);
 		if (productInfo.index < driver.findElements(PRODUCT_LIST_LOCATOR).size() - 1) {
@@ -103,7 +81,6 @@ public class AmazonSearchResultsPage {
 		}
 	}
 
-	// Helper method to append missing product details to the result
 	private void appendMissingDetails(StringBuffer result, ProductInfo productInfo) {
 		if (productInfo.productName.isEmpty()) {
 			result.append("Product row " + (productInfo.index + 1) + " name is empty");
@@ -119,7 +96,6 @@ public class AmazonSearchResultsPage {
 		}
 	}
 
-	// Helper class to hold product info (name, price, and index)
 	private static class ProductInfo {
 		int index;
 		String productName;

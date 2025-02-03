@@ -1,6 +1,5 @@
 package stepdefinitions.api;
 
-// ✅ Import JUnit Assertions
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -40,11 +39,9 @@ public class MobileAPISteps {
 			ObjectMapper objectMapper = new ObjectMapper();
 			JsonNode jsonData = objectMapper.readTree(jsonResponse);
 
-			// Extract the product name
 			String actualName = jsonData.get(index - 1).get("name").asText();
 			System.out.println("Product Name at ID " + index + ": " + actualName);
 
-			// Validate
 			assertEquals(expectedName.replaceAll("\\s+", " ").trim(), actualName.replaceAll("\\s+", " ").trim(),
 					"Product name mismatch!");
 		} catch (Exception e) {

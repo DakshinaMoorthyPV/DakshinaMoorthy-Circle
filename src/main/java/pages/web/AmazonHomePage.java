@@ -8,14 +8,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.ConfigReader;
+import utils.SeleniumActions;
 
 public class AmazonHomePage {
 	private WebDriver driver;
 	private By searchBar = By.xpath("//*[@id='twotabsearchtextbox']");
 	private By searchButton = By.id("nav-search-submit-button");
-
+	SeleniumActions actions;
+	
 	public AmazonHomePage(WebDriver driver) {
 		this.driver = driver;
+        this.actions = new SeleniumActions(driver);
 	}
 
 	public void openAmazon() {
@@ -32,17 +35,15 @@ public class AmazonHomePage {
 	}
 
 	public void enterSearchText(String product) {
-		driver.findElement(searchBar).sendKeys(product);
+        actions.sendKeys(searchBar, product);
 	}
 
 	public void clickSearchButton() {
-		driver.findElement(searchButton).click();
+        actions.click(searchButton);
 	}
 
 	public void waitForPageToLoad(long timeoutInSeconds) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-
-		// Wait until the page's readyState is 'complete'
 		wait.until(
 				driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
 	}

@@ -9,9 +9,6 @@ import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 
-/**
- * Hooks - Supports parallel execution.
- */
 public class Hooks {
 
 	private static final ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();

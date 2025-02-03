@@ -1,6 +1,5 @@
 package stepdefinitions.web;
 
-// ✅ Use JUnit 5 Assertions
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.openqa.selenium.WebDriver;
@@ -37,7 +36,6 @@ public class AmazonSearchSteps {
 	public void iShouldSeeAListOfProductsRelatedTo(String product) {
 		StringBuffer unrelatedProductRows = resultsPage.isProductListDisplayed(product);
 
-		// Check if the list is null and assert accordingly
 		assertTrue(unrelatedProductRows == null || unrelatedProductRows.length() == 0,
 				"Product list contains unrelated products: "
 						+ (unrelatedProductRows != null ? unrelatedProductRows.toString() : "None"));
@@ -47,7 +45,6 @@ public class AmazonSearchSteps {
 	public void eachProductListedShouldHaveANameAndPriceDisplayed() {
 		StringBuffer missingDetailsProductRows = resultsPage.areProductNamesAndPricesDisplayed();
 
-		// Assert that the product list contains no missing product names or prices
 		assertTrue(missingDetailsProductRows == null || missingDetailsProductRows.length() == 0,
 				"The following product rows are missing details: "
 						+ (missingDetailsProductRows != null ? missingDetailsProductRows.toString()

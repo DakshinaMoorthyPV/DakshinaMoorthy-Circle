@@ -1,7 +1,5 @@
 package config;
 
-import java.io.File;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -28,24 +26,12 @@ public class WebDriverFactory {
 
 		switch (browserName) {
 		case "chrome":
-			/*
-			 * WebDriverManager.chromedriver().setup(); ChromeOptions chromeOptions = new
-			 * ChromeOptions(); if (isHeadless) {
-			 * chromeOptions.addArguments("--headless=new"); }
-			 * chromeOptions.addArguments("--window-size=1920,1080"); driver = new
-			 * ChromeDriver(chromeOptions);
-			 */
-			String driverPath = "src" + File.separator + "main" + File.separator + "resources" + File.separator
-					+ "chromedriver.exe";
-			String binaryPath = "chrome-win64" + File.separator + "chrome.exe";
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + File.separator + driverPath);
-			ChromeOptions chromeOptions = new ChromeOptions();
-			chromeOptions.setBinary(binaryPath);
-			if (isHeadless) {
-				chromeOptions.addArguments("--headless=new");
-			}
-			chromeOptions.addArguments("--window-size=1920,1080");
-			driver = new ChromeDriver(chromeOptions);
+			
+			  WebDriverManager.chromedriver().setup(); ChromeOptions chromeOptions = new
+			  ChromeOptions(); if (isHeadless) {
+			  chromeOptions.addArguments("--headless=new"); }
+			  chromeOptions.addArguments("--window-size=1920,1080"); driver = new
+			  ChromeDriver(chromeOptions);
 			break;
 
 		case "edge":
@@ -82,9 +68,6 @@ public class WebDriverFactory {
 		return driver;
 	}
 
-	/**
-	 * Returns the initialized WebDriver.
-	 */
 	public static WebDriver getDriver() {
 		if (driver == null) {
 			driver = initializeDriver();
@@ -92,9 +75,6 @@ public class WebDriverFactory {
 		return driver;
 	}
 
-	/**
-	 * Quits WebDriver after execution.
-	 */
 	public static void quitDriver() {
 		if (driver != null) {
 			driver.quit();

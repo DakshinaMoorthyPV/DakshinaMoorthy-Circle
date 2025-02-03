@@ -220,7 +220,7 @@
 									http://localhost:8080/job/circlehealth_WebAPI_Automation/build</argument>
 								<argument>--user</argument>
 								<argument>
-									"user:token"</argument>
+									"username:accesskey"</argument>
 							</arguments>
 						</configuration>
 					</execution>

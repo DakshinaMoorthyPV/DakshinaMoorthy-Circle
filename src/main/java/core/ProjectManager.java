@@ -4,9 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 import config.WebDriverFactory;
 
-/**
- * ProjectManager - Handles test execution setup & cleanup.
- */
 public class ProjectManager {
 
 	private static WebDriver driver;
