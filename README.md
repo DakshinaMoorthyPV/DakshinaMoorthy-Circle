@@ -151,7 +151,6 @@ If you need to trigger additional commands during your test execution, such as i
 
 ```
 mvn exec:exec -Dexec.executable="curl" -Dexec.args="-X POST http://localhost:8080/job/circlehealth_WebAPI_Automation/build --user 'user:token'"
-
 ```
 
 ## Combining Multiple Options
