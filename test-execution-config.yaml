@@ -1,0 +1,6 @@
+browser:
+  baseUrl: "IN"  # Default environment (if not overridden via Maven)
+  name: "chrome"  # Options: "chrome", "edge", "firefox", "safari"
+  version: "latest"  # Automatically fetch the latest version
+  headless: false  # Set true for headless execution
+  windowSize: "1920x1080"  # Browser window size

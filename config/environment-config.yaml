@@ -1,0 +1,13 @@
+amazon:
+  UK: "https://www.amazon.co.uk/"
+  US: "https://www.amazon.com/"
+  CA: "https://www.amazon.ca/"
+  IN: "https://www.amazon.in/"
+  DE: "https://www.amazon.de/"
+  FR: "https://www.amazon.fr/"
+  IT: "https://www.amazon.it/"
+  ES: "https://www.amazon.es/"
+  AU: "https://www.amazon.com.au/"
+  JP: "https://www.amazon.co.jp/"
+  MX: "https://www.amazon.com.mx/"
+  BR: "https://www.amazon.com.br/"
